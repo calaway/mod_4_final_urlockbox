@@ -2,10 +2,10 @@ require "rails_helper"
 
 RSpec.describe "Link status", :js => :true do
   context "starts as unread" do
-    context "user changes marks it as read" do
+    context "user marks it as read" do
       scenario "the read status becomes true" do
         user = User.create(email: "example@example.com", password: "secret")
-        link = user.links.create(title: "Turing", url: "http://turing.io")
+        link = user.links.create(title: "Turing", url: "http://turing.io", read: false)
         sign_in user
 
         visit root_path
@@ -29,7 +29,7 @@ RSpec.describe "Link status", :js => :true do
   end
 
   context "starts as read" do
-    context "user changes marks it as unread" do
+    context "user marks it as unread" do
       scenario "the read status becomes false" do
         user = User.create(email: "example@example.com", password: "secret")
         link = user.links.create(title: "Turing", url: "http://turing.io", read: true)

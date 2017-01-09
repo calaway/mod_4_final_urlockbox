@@ -16,6 +16,7 @@ class Api::V1::LinksController < ApplicationController
 
   def update
     @link = Link.find params[:id]
+    @link.toggle(:read) if params[:toggle_read]
     @link.assign_attributes link_params
     just_read = @link.read_changed? && @link.read
     if @link.save
