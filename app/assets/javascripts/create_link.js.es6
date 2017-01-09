@@ -13,7 +13,8 @@ function createLink (event){
   var link = getLinkData();
 
   $.post("/api/v1/links", link)
-   .then( renderLink )
+   .done( renderLink )
+   .then( clearFailure )
    .fail( displayFailure )
  }
 
@@ -25,15 +26,16 @@ function getLinkData() {
 }
 
 function renderLink(link){
-  $("#links-list").append( linkHTML(link) )
-  // clearLink();
+  $("#links-list").prepend( linkHTML(link) )
+  attachEditEvents(link);
+  clearLink();
 }
 
 function linkHTML(link) {
-
     return `<div class='link' data-id='${link.id}' id="link-${link.id}">
-              <p class='link-title'>${ link.title }</p>
-              <p class='link-url'>${ link.url }</p>
+              <hr>
+              <p class='link-title' contenteditable=true>${ link.title }</p>
+              <p class='link-url' contenteditable=true>${ link.url }</p>
 
               <p class="link_read">
                 ${ link.read }
@@ -41,7 +43,6 @@ function linkHTML(link) {
               <p class="link_buttons">
                 <button class="mark-read">Mark as Read</button>
                 <button class='edit-link'>Edit</button>
-                <button class='delete-link'>Delete</button>
               </p>
             </div>`
 }
@@ -53,4 +54,8 @@ function clearLink() {
 
 function displayFailure(failureData){
   $("#flash").html(failureData.responseText + "<hr>")
+}
+
+function clearFailure() {
+  $("#flash").html("")
 }
