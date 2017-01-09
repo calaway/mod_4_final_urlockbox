@@ -17,7 +17,7 @@ RSpec.feature "VisitorSignsUps", type: :feature do
 
       expect(current_path).to eq root_path
       expect(page).to have_text "Sign Out"
-      expect(page).to_not have_text "Sign In or Sign Up"
+      expect(page).to_not have_text "Sign Up"
       expect(page).to have_text "example@example.com"
     end
   end
