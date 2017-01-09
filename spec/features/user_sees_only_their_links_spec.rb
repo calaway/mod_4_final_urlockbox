@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "User visits links page", :js => :true do
-  xscenario "they see only their links" do
+  scenario "they see only their links" do
     user = User.create(email: "example@example.com", password: "secret")
     sign_in user
     user_link = user.links.create(title: "User's link", url: "http://user_link.com")
@@ -11,5 +11,7 @@ RSpec.describe "User visits links page", :js => :true do
 
     expect(page).to have_text(user_link.title)
     expect(page).to have_text(user_link.url)
+    expect(page).to_not have_text(other_link.title)
+    expect(page).to_not have_text(other_link.url)
   end
 end

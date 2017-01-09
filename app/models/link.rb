@@ -1,5 +1,6 @@
 class Link < ApplicationRecord
   validates :url, :url => true
+  belongs_to :user
 
   scope :hot, -> {
     select('links.url as url')
