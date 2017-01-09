@@ -28,6 +28,7 @@ function getLinkData() {
 function renderLink(link){
   $("#links-list").prepend( linkHTML(link) )
   attachEditEvents(link);
+  showReadStatus(link);
   clearLink();
 }
 
@@ -37,9 +38,7 @@ function linkHTML(link) {
               <p class='link-title' contenteditable=true>${ link.title }</p>
               <p class='link-url' contenteditable=true>${ link.url }</p>
 
-              <p class="link_read">
-                ${ link.read }
-              </p>
+              <p class="link_read">${ link.read }</p>
               <p class="link_buttons">
                 <button class="mark-read">Mark as Read</button>
                 <button class='edit-link'>Edit</button>
