@@ -14,9 +14,9 @@ gem 'rails_12factor', group: :production
 gem 'responders'
 gem 'awesome_print'
 gem 'bcrypt', '~> 3.1.7'
-gem 'better_errors', group: :development
 gem 'react-rails'
 gem 'sprockets-es6'
+gem 'validate_url'
 
 # gem 'unicorn'
 
