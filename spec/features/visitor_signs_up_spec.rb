@@ -23,7 +23,7 @@ RSpec.feature "VisitorSignsUps", type: :feature do
   end
 
   context "with mismatched password & confirmation" do
-    xscenario "they are redirected back" do
+    scenario "they are redirected back" do
       visit root_path
       click_on "Sign Up"
 

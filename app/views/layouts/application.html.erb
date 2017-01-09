@@ -9,6 +9,13 @@
 <body>
 <div class="container">
 
+  <div id="flash">
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+      <hr>
+    <% end -%>
+  </div>
+
   <% if current_user %>
     You are signed in under: <%= current_user.email %> | <%= link_to "Sign Out", logout_path, method: :delete %>
     <hr>
@@ -16,7 +23,7 @@
     <%= link_to "Sign In", login_path %> | <%= link_to "Sign Up", signup_path %>
     <hr>
   <% end %>
-  
+
   <%= yield %>
 
 </div>

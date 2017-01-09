@@ -9,11 +9,11 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect_to :root
     else
-      redirect_to :signup
+      redirect_to :signup, notice: user.errors.full_messages.join(", ")
     end
   end
 
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:email, :password, :password_confirmation)
   end
 end
