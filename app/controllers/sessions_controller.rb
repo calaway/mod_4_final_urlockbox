@@ -6,9 +6,9 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to :root
+      redirect_to :root, notice: "Sign In Successful"
     else
-      redirect_to :login
+      redirect_to :login, notice: "Sign In Unsuccessful"
     end
   end
 

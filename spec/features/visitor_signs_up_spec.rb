@@ -9,7 +9,6 @@ RSpec.feature "VisitorSignsUps", type: :feature do
       expect(page).to_not have_text "Sign Out"
 
       click_on "Sign Up"
-
       fill_in "user[email]", with: "example@example.com"
       fill_in "user[password]", with: "secret"
       fill_in "user[password_confirmation]", with: "secret"
