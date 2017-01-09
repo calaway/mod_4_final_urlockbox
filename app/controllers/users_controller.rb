@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       session[:user_id] = user.id
-      redirect_to :root
+      redirect_to :root, notice: "Sign In Successful"
     else
       redirect_to :signup, notice: user.errors.full_messages.join(", ")
     end
