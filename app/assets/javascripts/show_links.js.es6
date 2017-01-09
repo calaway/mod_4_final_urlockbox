@@ -1,5 +1,7 @@
 $(document).ready(function(){
-  addLinks();
+  if (window.location.pathname === "/links" || window.location.pathname === "/") {
+    addLinks();
+  }
 })
 
 function addLinks() {
@@ -7,5 +9,4 @@ function addLinks() {
   .then(function(allLinks) {
     allLinks.forEach( renderLink );
   })
-  .fail( displayFailure )
 }

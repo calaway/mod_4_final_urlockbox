@@ -1,11 +1,12 @@
 class Api::V1::LinksController < ApplicationController
+  before_action :authenticate_api!
 
   def index
-    render json: current_user.links
+    render json: links = current_user.links
   end
 
   def create
-    @link = Link.new link_params
+    @link = current_user.links.new link_params
     if @link.save
       render json: @link, status: 201
     else
