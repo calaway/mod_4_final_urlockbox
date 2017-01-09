@@ -5,7 +5,7 @@ class Api::V1::LinksController < ApplicationController
     if @link.save
       render json: @link, status: 201
     else
-      render json: @link.errors.full_messages, status: 500
+      render json: @link.errors.full_messages.join(". "), status: 500
     end
   end
 
@@ -17,7 +17,7 @@ class Api::V1::LinksController < ApplicationController
       Read.create(link: @link) if just_read
       head :no_content
     else
-      render json: @link.errors.full_messages, status: 500
+      render json: @link.errors.full_messages.join(". "), status: 500
     end
   end
 

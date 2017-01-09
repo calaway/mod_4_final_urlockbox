@@ -30,6 +30,7 @@ RSpec.describe "User submits a link", :js => :true do
 
       expect(page).to_not have_text("Turing")
       expect(page).to_not have_text("http://turing.io")
+      expect(page).to have_text("Url is not a valid URL")
     end
   end
 end

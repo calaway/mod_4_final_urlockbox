@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect_to :root, notice: "Sign In Successful"
     else
-      redirect_to :signup, notice: user.errors.full_messages.join(", ")
+      redirect_to :signup, notice: user.errors.full_messages.join(". ")
     end
   end
 
