@@ -11,4 +11,8 @@ class ApplicationController < ActionController::Base
   def authenticate!
     redirect_to :signup unless current_user
   end
+
+  def authenticate_api!
+    head :unauthorized unless current_user
+  end
 end
