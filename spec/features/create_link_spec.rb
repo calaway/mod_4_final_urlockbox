@@ -19,7 +19,7 @@ RSpec.describe "User submits a link", :js => :true do
   end
 
   context "with an invalid URL" do
-    xscenario "the link is not created" do
+    scenario "the link is not created" do
       user = User.create(email: "example@example.com", password: "secret")
       sign_in user
 
