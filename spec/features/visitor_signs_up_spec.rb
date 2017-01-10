@@ -38,4 +38,24 @@ RSpec.feature "VisitorSignsUps", type: :feature do
       expect(page).to have_text "Password confirmation doesn't match Password"
     end
   end
+
+  context "with non-unique email" do
+    scenario "they are redirected back" do
+      User.create(email: "taken_email@example.com", password: "secret")
+
+      visit root_path
+      click_on "Sign Up"
+
+      fill_in "user[email]", with: "taken_email@example.com"
+      fill_in "user[password]", with: "secret"
+      fill_in "user[password_confirmation]", with: "secret"
+      click_on "Submit"
+
+      expect(current_path).to eq signup_path
+      expect(page).to_not have_text "Sign Out"
+      expect(page).to_not have_text "example@example.com"
+      expect(page).to have_text "Sign Up"
+      expect(page).to have_text "Email has already been taken"
+    end
+  end
 end
