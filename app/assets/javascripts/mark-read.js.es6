@@ -1,21 +1,8 @@
-var $newLinkTitle, $newLinkUrl;
-
 $(document).ready(function(){
-
   $('#links-list').on('click', 'button.mark-read', function(){
-    var $this = $(this);
-    var linkId = $this.parents('.link').data('id');
-    var link_url = $(this).parent().siblings(".link-url").text()
-    var hot_reads_url = 'https://calawayhotreads.herokuapp.com'
-    // var hot_reads_url = 'http://0.0.0.0:3001'
+    var linkId = $(this).parents('.link').data('id');
 
     updateRead(linkId);
-
-    $.ajax({
-      url: `${hot_reads_url}/api/v1/reads`,
-      method: 'POST',
-      data: {url: link_url}
-    })
   })
 })
 
@@ -25,7 +12,12 @@ function updateRead(linkId) {
     method: 'PATCH',
     data: {toggle_read: true}
   })
-  .done( showReadStatus );
+  .done( function(link) {
+    showReadStatus(link);
+    if (link.read) {
+      postHotRead(link);
+    }
+  });
 }
 
 function showReadStatus(link) {
@@ -38,4 +30,14 @@ function showReadStatus(link) {
     $(`#link-${link.id}`).find('button.mark-read').text('Mark as Read')
     $(`#link-${link.id}`).removeClass('read-link')
   }
+}
+
+function postHotRead(link) {
+  var hot_reads_url = 'https://calawayhotreads.herokuapp.com'
+
+  $.ajax({
+    url: `${hot_reads_url}/api/v1/reads`,
+    method: 'POST',
+    data: {url: link.url}
+  })
 }
