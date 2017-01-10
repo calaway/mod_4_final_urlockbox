@@ -1,3 +1,6 @@
+<h1>URLockbox</h1>
+
+<h3>Submit Link</h3>
 <form id="new-link">
   <label>URL:
     <input id="link-url">
@@ -7,5 +10,19 @@
   </label>
   <input type="submit" value="Add Link">
 </form>
+<hr>
+
+<h3>Your Links</h3>
+<div id="filters">
+  <label>Filter by Read:
+    <select name="filter-by-read" id="filter-by-read">
+      <option value="true">read</option>
+      <option value="false">unread</option>
+    </select>
+  </label>
+  <label> | Search:
+    <input name="filter-by-text" id="filter-by-text">
+  </label>
+</div>
 
 <div id="links-list"></div>
